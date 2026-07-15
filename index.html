@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Tess — Ingressos para shows, festivais e eventos</title>
+  <meta name="description" content="Compre ingressos para os melhores shows, festivais, teatros e eventos ao vivo." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <!-- CABEÇALHO -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="/" class="logo">
+        <span class="logo-mark">✦</span>
+        <span>Tess</span>
+      </a>
+
+      <div class="search-wrap">
+        <div class="search">
+          <svg viewBox="0 0 24 24" class="ic">
+            <path d="M21 21l-4.3-4.3M17 10a7 7 0 1 1-14 0 7 7 0 0 1 14 0z" fill="none" stroke="currentColor"
+              stroke-width="2" stroke-linecap="round" />
+          </svg>
+          <input id="searchInput" placeholder="O que você quer curtir?" aria-label="Buscar eventos" />
+        </div>
+        <select class="city-btn" id="citySelect" aria-label="Selecionar cidade">
+          <option value="ND">Ndalatando</option>
+          <option value="LD">Luanda</option>
+          <option value="BG">Benguela</option>
+          <svg viewBox="0 0 24 24" class="ic muted">
+            <path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" />
+          </svg>
+         </select>
+      </div>
+
+      <nav class="nav">
+        <button class="btn-ghost hide-sm">Produza um evento</button>
+        <button class="btn-ghost hide-xs">Entrar</button>
+        <button class="btn-primary">Cadastrar</button>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-slide" id="heroSlide"></div>
+      <div class="hero-overlay"></div>
+
+      <button class="hero-nav prev" id="heroPrev" aria-label="Anterior">‹</button>
+      <button class="hero-nav next" id="heroNext" aria-label="Próximo">›</button>
+
+      <div class="hero-content">
+        <p class="eyebrow" id="heroCity"></p>
+        <h1 id="heroTitle"></h1>
+        <button class="btn-primary lg">Levante seu ingresso aqui!</button>
+      </div>
+
+      <div class="hero-dots" id="heroDots"></div>
+    </section>
+
+    <!-- ATALHOS -->
+    <div class="container">
+      <div class="shortcuts">
+        <button class="shortcut">
+          <span class="chip"><svg viewBox="0 0 24 24" aria-hidden="true" class="ic">
+              <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2" />
+              <path d="M12 6v6l4 2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+            </svg></span>
+          <span><strong>Eventos à horas</strong><small>Programas de última hora</small></span>
+        </button>
+        <button class="shortcut">
+          <span class="chip"><svg viewBox="0 0 24 24" aria-hidden="true" class="ic">
+              <rect x="3" y="4" width="18" height="18" rx="2" ry="2" fill="none" stroke="currentColor"
+                stroke-width="2" />
+              <path d="M16 2v4M8 2v4M3 10h18" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" />
+            </svg></span>
+          <span><strong>Neste fim de semana</strong><small>Veja os próximos eventos</small></span>
+        </button>
+        <button class="shortcut">
+          <span class="chip"><svg viewBox="0 0 24 24" aria-hidden="true" class="ic">
+              <circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2" />
+              <path d="M20 20l-3.5-3.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+            </svg></span>
+          <span><strong>Faça sua busca</strong><small>Defina data e categoria</small></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- EM DESTAQUE -->
+    <section class="container section">
+      <div class="section-head">
+        <h2><span class="chip sm brand-bg">★</span> Eventos em destaque</h2>
+        <div class="arrows">
+          <button aria-label="Anterior">‹</button>
+          <button aria-label="Próximo">›</button>
+        </div>
+      </div>
+      <div class="grid grid-5" id="featuredGrid"></div>
+    </section>
+
+    <!-- CATEGORIAS -->
+    <section class="container section">
+      <h2>Explore por categoria</h2>
+      <div class="grid grid-8">
+        <a class="cat" href="#">
+          <span class="chip"><svg viewBox="0 0 24 24" aria-hidden="true" class="ic">
+              <path d="M9 18V5l12-2v13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" />
+              <circle cx="6" cy="18" r="3" fill="none" stroke="currentColor" stroke-width="2" />
+              <circle cx="18" cy="16" r="3" fill="none" stroke="currentColor" stroke-width="2" />
+            </svg></span>
+          <span>Shows</span>
+        </a>
+        <a class="cat" href="#">
+          <span class="chip"><svg viewBox="0 0 24 24" aria-hidden="true" class="ic">
+              <path d="M18 3v18H6V3z" fill="none" stroke="currentColor" stroke-width="2" />
+              <path d="M14 9H10M16 5H8v14h8z" fill="none" stroke="currentColor" stroke-width="2" />
+            </svg></span>
+          <span>Teatro</span>
+        </a>
+        <a class="cat" href="#">
+          <span class="chip"><svg viewBox="0 0 24 24" aria-hidden="true" class="ic">
+              <path d="M8 21h8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+              <path d="M10 21v-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+              <path d="M14 21v-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+              <path d="M9 7h6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+              <path d="M12 3v4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+              <path d="M7 7h10l-1 9H8L7 7z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg></span>
+          <span>Esportes</span>
+        </a>
+        <a class="cat" href="#">
+          <span class="chip"><svg viewBox="0 0 24 24" aria-hidden="true" class="ic">
+              <rect x="2" y="3" width="20" height="18" rx="2.18" ry="2.18" fill="none" stroke="currentColor"
+                stroke-width="2" />
+              <line x1="7" y1="3" x2="7" y2="21" stroke="currentColor" stroke-width="2" />
+              <line x1="17" y1="3" x2="17" y2="21" stroke="currentColor" stroke-width="2" />
+              <line x1="2" y1="9" x2="22" y2="9" stroke="currentColor" stroke-width="2" />
+              <line x1="2" y1="15" x2="22" y2="15" stroke="currentColor" stroke-width="2" />
+            </svg></span>
+          <span>Cinema</span>
+        </a>
+        <a class="cat" href="#">
+          <span class="chip"><svg viewBox="0 0 24 24" aria-hidden="true" class="ic">
+              <path d="M4 19h16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+              <path d="M6 19V9" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+              <path d="M18 19V5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+              <path d="M10 19V13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+              <path d="M14 19V11" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+            </svg></span>
+          <span>Gastronomia</span>
+        </a>
+        <a class="cat" href="#">
+          <span class="chip"><svg viewBox="0 0 24 24" aria-hidden="true" class="ic">
+              <path d="M19 3H5a2 2 0 0 0-2 2v14h18V5a2 2 0 0 0-2-2z" fill="none" stroke="currentColor"
+                stroke-width="2" />
+              <path d="M8 7h8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+              <path d="M8 11h8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+              <path d="M8 15h4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+            </svg></span>
+          <span>Cursos</span>
+        </a>
+        <a class="cat" href="#">
+          <span class="chip"><svg viewBox="0 0 24 24" aria-hidden="true" class="ic">
+              <rect x="3" y="5" width="18" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="2" />
+              <path d="M16 3v4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+              <path d="M8 3v4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+              <path d="M3 11h18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+            </svg></span>
+          <span>Agenda</span>
+        </a>
+        <a class="cat" href="#">
+          <span class="chip"><svg viewBox="0 0 24 24" aria-hidden="true" class="ic">
+              <path d="M12 2l1.8 5.2L19 9l-5.2 1.8L12 16l-1.8-5.2L5 9l5.2-1.8L12 2z" fill="none" stroke="currentColor"
+                stroke-width="2" stroke-linejoin="round" />
+            </svg></span>
+          <span>Top</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- FIM DE SEMANA -->
+    <section class="container section" id="weekendSection">
+      <div class="section-head">
+        <h2>Neste fim de semana</h2>
+        <a href="#" class="link-brand">Ver todos</a>
+      </div>
+      <div class="grid grid-4" id="weekendGrid"></div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta">
+      <div class="container cta-inner">
+        <div>
+          <h2>Produza seu evento na Ticketa</h2>
+          <p>Publique em minutos, gerencie ingressos e receba pagamentos direto na sua conta. Sem burocracia.</p>
+        </div>
+        <button class="btn-white">Começar agora</button>
+      </div>
+    </section>
+  </main>
+
+  <!-- RODAPÉ -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <div class="logo"><span class="logo-mark">✦</span><span>ticketa</span></div>
+        <p class="muted-text">Ingressos para os eventos que você ama.</p>
+      </div>
+      <div>
+        <h4>Para você</h4>
+        <ul>
+          <li>Eventos</li>
+          <li>Categorias</li>
+          <li>Cidades</li>
+          <li>Meus ingressos</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Para produtores</h4>
+        <ul>
+          <li>Criar evento</li>
+          <li>Preços</li>
+          <li>Central de ajuda</li>
+          <li>Contato</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Institucional</h4>
+        <ul>
+          <li>Sobre</li>
+          <li>Carreiras</li>
+          <li>Termos</li>
+          <li>Privacidade</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom container">
+      <p>© 2026 Ticketa. Todos os direitos reservados.</p>
+      <div class="socials"><span>IG</span><span>FB</span><span>YT</span><span>X</span></div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
