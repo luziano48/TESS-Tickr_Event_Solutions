@@ -5,21 +5,6 @@ const heroSlides = [
   { img: "assets/hero-3.jpg", title: "Neon Nights Festival", city: "Curitiba — 05 de Setembro" },
 ];
 
-const featured = [
-  { img: "assets/event-park.jpg", count: 1152, title: "Parque Aventura Verão", place: "Parque Central • SP" },
-  { img: "assets/event-acoustic.jpg", count: 330, title: "Registro Acústico — Vitor Melo", place: "Teatro Bravo • RJ" },
-  { img: "assets/event-cake.jpg", count: 58, title: "Cake Cup — Festival de Doces", place: "Expo Center • BH" },
-  { img: "assets/event-metal.jpg", count: 359, title: "Bestas de Ferro — Turnê Nacional", place: "Arena Sul • POA" },
-  { img: "assets/event-kpop.jpg", count: 598, title: "SEVN World Tour", place: "Allianz Parque • SP" },
-];
-
-const weekend = [
-  { img: "assets/event-theatre.jpg", title: "Musical: Luzes da Cidade", date: "SÁB 18 JUL", place: "Teatro Real • SP", price: "R$ 90" },
-  { img: "assets/event-comedy.jpg", title: "Noite do Riso", date: "SEX 17 JUL", place: "Comedy Club • SP", price: "R$ 60" },
-  { img: "assets/event-park.jpg", title: "Feira Gastronômica", date: "DOM 19 JUL", place: "Parque das Nações • SP", price: "Grátis" },
-  { img: "assets/event-cake.jpg", title: "Festival do Doce", date: "SÁB 18 JUL", place: "Expo Center • BH", price: "R$ 45" },
-];
-
 // ---- CARROSSEL DO HERO ----
 let slide = 0;
 const slideEl = document.getElementById("heroSlide");
@@ -73,52 +58,6 @@ if (searchInput) {
   }
 }
 
-// ---- EM DESTAQUE ----
-document.getElementById("featuredGrid").innerHTML = featured.map(e => `
-  <a class="card-featured" href="#">
-    <div class="thumb">
-      <img src="${e.img}" alt="${e.title}" loading="lazy" />
-      <span class="badge">🎟 ${e.count}</span>
-    </div>
-    <h3>${e.title}</h3>
-    <p>${e.place}</p>
-  </a>
-`).join("");
-
-// ---- FIM DE SEMANA ----
-document.getElementById("weekendGrid").innerHTML = weekend.map(w => `
-  <article class="card-weekend">
-    <div class="thumb">
-      <img src="${w.img}" alt="${w.title}" loading="lazy" />
-      <span class="date-tag">${w.date}</span>
-    </div>
-    <div class="body">
-      <h3>${w.title}</h3>
-      <p class="muted-text" style="margin-top:4px">${w.place}</p>
-      <div class="row">
-        <span class="price">${w.price}</span>
-        <button class="buy">Comprar</button>
-      </div>
-    </div>
-  </article>
-`).join("");
-
-// ---- LIVE SEARCH ----
-if (searchInput) {
-  let searchTimeout;
-  searchInput.addEventListener("input", (e) => {
-    clearTimeout(searchTimeout);
-    const query = e.target.value.toLowerCase().trim();
-    if (query.length < 2) return;
-    
-    searchTimeout = setTimeout(() => {
-      const results = featured.filter(f => 
-        f.title.toLowerCase().includes(query) || f.place.toLowerCase().includes(query)
-      );
-      console.log(`Busca: "${query}" → ${results.length} resultados`);
-    }, 300);
-  });
-}
 
 // ---- EVENT DELEGATION: Cards ----
 document.addEventListener("click", (e) => {
