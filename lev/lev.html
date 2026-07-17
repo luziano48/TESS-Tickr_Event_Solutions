@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-AO">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Levanta o teu bilhete e acede ao evento. Tickr.">
+  <title>O Meu Bilhete — Tickr</title>
+  <link rel="stylesheet" href="./lev.css">
+</head>
+
+<body>
+  <div class="wrap">
+    <div class="brand">
+      <span class="brand-dot"></span>
+      <span class="brand-name">tickr</span>
+    </div>
+
+    <!-- ESTADO 1: BUSCA -->
+    <div class="estado ativo" id="estado-busca">
+      <div class="card">
+        <div class="eyebrow">O Meu Bilhete</div>
+        <h1>Levanta o teu acesso</h1>
+        <p class="sub">Introduz o número de telefone que usaste na compra para confirmar o estado do teu bilhete.</p>
+
+        <div class="erro-msg" id="erro-msg">
+          <span>⚠</span>
+          <span>Não encontrámos bilhete associado. Confirma o número e tenta novamente.</span>
+        </div>
+
+        <div class="input-group">
+          <label for="telefone">Número de Telefone</label>
+          <input 
+            type="tel" 
+            id="telefone" 
+            placeholder="923 XXX XXX" 
+            inputmode="numeric"
+            autocomplete="tel"
+          >
+        </div>
+
+        <button class="btn btn-primary" id="btn-procurar">
+          <span class="spinner" id="spinner"></span>
+          <span id="btn-procurar-texto">Procurar Bilhete</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- ESTADO 2: PENDENTE -->
+    <div class="estado" id="estado-pendente">
+      <div class="card" style="text-align: center;">
+        <div class="pendente-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+            <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.5" opacity="0.3"/>
+            <circle cx="12" cy="12" r="9" stroke="#00cc95" stroke-width="1.5" stroke-dasharray="18" stroke-dashoffset="0"/>
+            <path d="M12 7v5l3.2 2" stroke="#00cc95" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <h1>À Espera de Confirmação</h1>
+        <p class="sub">O organizador ainda está a processar o teu pedido. Assim que aprovado, o teu bilhete com QR Code aparece aqui automaticamente.</p>
+
+        <div class="whatsapp-lembrete">
+          <span>💬</span>
+          <span>Fica atento ao WhatsApp — o organizador confirma os detalhes através de lá.</span>
+        </div>
+
+        <button class="btn btn-ghost" id="btn-voltar-1">Procurar Outro Número</button>
+      </div>
+    </div>
+
+    <!-- ESTADO 3: APROVADO -->
+    <div class="estado" id="estado-aprovado">
+      <div class="ticket">
+        <div class="ticket-top">
+          <div class="selo-aprovado">✓ Bilhete Confirmado</div>
+          <p class="aviso-uso">Faz uma captura de ecrã para guardar o teu bilhete</p>
+          <div class="evento-nome" id="ev-nome">Noite Afrobeat</div>
+          <div class="evento-meta" id="ev-meta">15 de Agosto · 21h00 · Talatona</div>
+          <div id="qr-holder"></div>
+          <div class="codigo-bilhete" id="ev-codigo">TCK-4X92-LD</div>
+        </div>
+
+        <div class="ticket-bottom">
+          <div class="detalhe-linha">
+            <span>Titular</span>
+            <span id="det-titular">—</span>
+          </div>
+          <div class="detalhe-linha">
+            <span>Tipo de Bilhete</span>
+            <span id="det-tipo">—</span>
+          </div>
+          <div class="detalhe-linha">
+            <span>Quantidade</span>
+            <span id="det-qtd">—</span>
+          </div>
+          <p class="aviso-uso">Apresenta este QR Code à entrada. Cada código pode ser validado apenas uma vez.</p>
+        </div>
+      </div>
+      <button class="btn btn-ghost" id="btn-voltar-2">Procurar Outro Número</button>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <script src="./lev.js"></script>
+</body>
+
+</html>

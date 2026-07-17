@@ -37,13 +37,13 @@ renderHero();
 const searchInput = document.getElementById("searchInput");
 if (searchInput) {
   searchInput.addEventListener("focus", () => {
-    searchInput.parentElement.style.borderColor = "var(--brand)";
+    searchInput.parentElement.style.borderColor = "#03624c";
     searchInput.parentElement.style.background = "#fff";
-    searchInput.parentElement.style.boxShadow = "0 0 0 3px var(--brand-soft)";
+    searchInput.parentElement.style.boxShadow = "0 0 0 3px #d2ebe5";
   });
   searchInput.addEventListener("blur", () => {
-    searchInput.parentElement.style.borderColor = "var(--border)";
-    searchInput.parentElement.style.background = "#f5f6fa";
+    searchInput.parentElement.style.borderColor = "#d2ebe5";
+    searchInput.parentElement.style.background = "#fafbfc";
     searchInput.parentElement.style.boxShadow = "none";
   });
   
