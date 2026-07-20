@@ -61,6 +61,7 @@ function procurarBilhete() {
   const input = document.getElementById('telefone');
   const numero = input.value.replace(/\D/g, '').trim();
   limparErro();
+  document.getElementById('contacto-suporte').style.display = 'none';
 
   if (!numero || numero.length < 9) {
     document.getElementById('erro-msg').classList.add('ativo');
@@ -85,6 +86,7 @@ function procurarBilhete() {
 
     if (!registo) {
       document.getElementById('erro-msg').classList.add('ativo');
+      document.getElementById('contacto-suporte').style.display = 'block';
       input.focus();
       return;
     }

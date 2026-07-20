@@ -1,34 +1,35 @@
 :root {
   /* Primary */
-  --rich-black: #000f31;
-  --dark-green: #032221;
-  --bangladesh-green: #03624c;
-  --mountain-meadow: #2cc295;
-  --caribbean-green: #00f881;
-  --anti-flash-white: #f7f76;
+  --rich-black: #091a33;
+  --dark-green: #0b2e36;
+  --bangladesh-green: #075e54;
+  --mountain-meadow: #14b88a;
+  --caribbean-green: #65f0b8;
+  --anti-flash-white: #f5f8f8;
 
   /* Secondary */
-  --pine: #063028;
-  --basil: #08453a;
-  --forest: #055544;
-  --frog: #178760;
-  --mint: #2fa884;
-  --stone: #707070;
-  --pistachio: #accbc4;
+  --pine: #0b3c49;
+  --basil: #064d47;
+  --forest: #087568;
+  --frog: #119878;
+  --mint: #68d9b8;
+  --stone: #64748b;
+  --pistachio: #c4e7de;
 
   /* Working palette */
-  --bg: #f7f76;
-  --fg: #032221;
-  --muted: #707070;
-  --border: #d2ebe5;
-  --secondary: #d2ebe5;
-  --brand: #03624c;
-  --brand-accent: #2cc295;
-  --brand-bright: #00f881;
+  --bg: #f5f8f8;
+  --fg: #0b2e36;
+  --muted: #64748b;
+  --border: #d8ebe7;
+  --secondary: #e4f4ef;
+  --brand: #075e54;
+  --brand-accent: #14b88a;
+  --brand-bright: #65f0b8;
+  --brand-soft: #e8f7f2;
 
   --radius: 12px;
-  --shadow: 0 10px 30px -15px rgba(3, 98, 76, 0.2);
-  --shadow-lg: 0 20px 40px -20px rgba(3, 34, 33, 0.25);
+  --shadow: 0 10px 30px -15px rgba(7, 94, 84, 0.24);
+  --shadow-lg: 0 20px 40px -20px rgba(11, 46, 54, 0.28);
 }
 
 * {
@@ -41,7 +42,7 @@ html,
 body {
   background: var(--bg);
   color: var(--fg);
-  font-family: 'Inter', system-ui, sans-serif;
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
   -webkit-font-smoothing: antialiased
 }
 
@@ -71,6 +72,7 @@ h1,
 h2,
 h3,
 h4 {
+  font-family: 'Space Grotesk', 'Plus Jakarta Sans', sans-serif;
   font-weight: 800;
   letter-spacing: -.01em
 }
@@ -87,7 +89,18 @@ h2 {
 
 .ic {
   width: 16px;
-  height: 16px
+  height: 16px;
+  transition: transform .28s ease, color .28s ease
+}
+
+.shortcut:hover .ic,
+.cat:hover .ic { transform: rotate(-10deg) scale(1.14); }
+.arrows button:hover { color: var(--brand); transform: translateX(2px); }
+.arrows button:first-child:hover { transform: translateX(-2px); }
+.socials span:hover { animation: icon-pop .38s ease both; }
+
+@keyframes icon-pop {
+  50% { transform: translateY(-3px) scale(1.12); }
 }
 
 .brand {
@@ -119,7 +132,7 @@ h2 {
   position: sticky;
   top: 0;
   z-index: 50;
-  background: rgba(247, 247, 246, 0.95);
+  background: rgba(245, 248, 248, 0.95);
   backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--border);
   box-shadow: 0 2px 8px rgba(3, 34, 33, 0.08)
@@ -789,4 +802,103 @@ h2 {
 .socials span:hover {
   background: #fff;
   color: var(--brand)
+}
+
+/* HAMBURGER MENU */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  width: 24px;
+  height: 24px;
+  margin-left: auto;
+}
+
+.hamburger-line {
+  width: 100%;
+  height: 2px;
+  background-color: var(--fg);
+  border-radius: 2px;
+}
+
+/* SIDENAV */
+.sidenav {
+  position: fixed;
+  top: 0;
+  left: -280px;
+  width: 280px;
+  height: 100%;
+  background: #fff;
+  padding: 24px;
+  z-index: 100;
+  box-shadow: 0 0 40px rgba(0,0,0,0.1);
+  transition: left 0.3s cubic-bezier(0.77, 0, 0.175, 1);
+  display: flex;
+  flex-direction: column;
+}
+
+.sidenav.open {
+  left: 0;
+}
+
+.sidenav-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 32px;
+}
+
+.close-button {
+  font-size: 28px;
+  color: var(--muted);
+}
+
+.sidenav-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.sidenav-nav a {
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 12px 0;
+}
+
+.sidenav-nav .btn-primary {
+  margin-top: 16px;
+  text-align: center;
+}
+
+/* OVERLAY */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  z-index: 99;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.overlay.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+body.sidenav-open {
+  overflow: hidden;
+}
+
+
+@media (max-width:768px) {
+  .nav {
+    display: none;
+  }
+  .hamburger {
+    display: flex;
+  }
 }

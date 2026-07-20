@@ -1,0 +1,52 @@
+[
+  {
+    "id": "osancle",
+    "title": "O SANCLÉ",
+    "image": "assets/O SANCLÉ OFF.png",
+    "city": "Ndalatando",
+    "location": "Rua do mazambique",
+    "date": "A definir",
+    "description": "Descrição detalhada sobre o evento O SANCLÉ.",
+    "price": "3.500,00"
+  },
+  {
+    "id": "registro-acustico",
+    "title": "Registro Acústico — Vitor Melo",
+    "image": "assets/I LOVE DONDO II.jpg",
+    "city": "Dondo",
+    "location": "Teatro Bravo",
+    "date": "A definir",
+    "description": "Descrição detalhada sobre o Registro Acústico — Vitor Melo.",
+    "price": "4.000,00"
+  },
+  {
+    "id": "la-casa-de-papel",
+    "title": "La casa de papel",
+    "image": "assets/la_casa_de_papel (1).png",
+    "city": "Ndalatando",
+    "location": "hotel camuaxi",
+    "date": "A definir",
+    "description": "Descrição detalhada sobre o evento La casa de papel.",
+    "price": "5.000,00"
+  },
+  {
+    "id": "baile-finalistas",
+    "title": "Baile dos finalistas",
+    "image": "assets/BAILE-DOS-FINALISTA.jpg",
+    "city": "Ndalatando",
+    "location": "ITS",
+    "date": "A definir",
+    "description": "Descrição detalhada sobre o Baile dos finalistas.",
+    "price": "3.000,00"
+  },
+  {
+    "id": "forum-juvenil",
+    "title": "FORÚM-JUVENIL",
+    "image": "assets/HUSTLER 3.2.jpg",
+    "city": "Ndalatando",
+    "location": "SP",
+    "date": "A definir",
+    "description": "Descrição detalhada sobre o FORÚM-JUVENIL.",
+    "price": "Gratuito"
+  }
+]

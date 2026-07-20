@@ -6,6 +6,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Levanta o teu bilhete e acede ao evento. Tickr.">
   <title>O Meu Bilhete — Tickr</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./lev.css">
 </head>
 
@@ -28,21 +31,47 @@
           <span>Não encontrámos bilhete associado. Confirma o número e tenta novamente.</span>
         </div>
 
+        <div class="contacto-suporte" id="contacto-suporte" style="display: none;">
+          <div class="contacto-header">
+            <h3>Pagaste mas não encontras o bilhete?</h3>
+            <p>Entra em contacto com o nosso suporte — vamos ajudar.</p>
+          </div>
+          <div class="contacto-opcoes">
+            <a href="mailto:suporte@tickr.co.ao" class="contacto-btn">
+              <span class="contacto-icon">✉</span>
+              <div>
+                <div class="contacto-tipo">Email</div>
+                <div class="contacto-valor">suporte@tickr.co.ao</div>
+              </div>
+            </a>
+            <a href="https://wa.me/244912345678?text=Ol%C3%A1%20Tickr%2C%20comprei%20um%20bilhete%20mas%20n%C3%A3o%20encontro%20confirmado.%20Pode%20ajudar%3F"
+              target="_blank" class="contacto-btn">
+              <span class="contacto-icon">💬</span>
+              <div>
+                <div class="contacto-tipo">WhatsApp</div>
+                <div class="contacto-valor">+244 912 345 678</div>
+              </div>
+            </a>
+            <a href="tel:+244912345678" class="contacto-btn">
+              <span class="contacto-icon">☎</span>
+              <div>
+                <div class="contacto-tipo">Telefone</div>
+                <div class="contacto-valor">+244 912 345 678</div>
+              </div>
+            </a>
+          </div>
+        </div>
+
         <div class="input-group">
           <label for="telefone">Número de Telefone</label>
-          <input 
-            type="tel" 
-            id="telefone" 
-            placeholder="923 XXX XXX" 
-            inputmode="numeric"
-            autocomplete="tel"
-          >
+          <input type="tel" id="telefone" placeholder="923 XXX XXX" inputmode="numeric" autocomplete="tel">
         </div>
 
         <button class="btn btn-primary" id="btn-procurar">
           <span class="spinner" id="spinner"></span>
           <span id="btn-procurar-texto">Procurar Bilhete</span>
         </button>
+
       </div>
     </div>
 
@@ -51,13 +80,15 @@
       <div class="card" style="text-align: center;">
         <div class="pendente-icon">
           <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
-            <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.5" opacity="0.3"/>
-            <circle cx="12" cy="12" r="9" stroke="#00cc95" stroke-width="1.5" stroke-dasharray="18" stroke-dashoffset="0"/>
-            <path d="M12 7v5l3.2 2" stroke="#00cc95" stroke-width="1.5" stroke-linecap="round"/>
+            <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.5" opacity="0.3" />
+            <circle cx="12" cy="12" r="9" stroke="#00cc95" stroke-width="1.5" stroke-dasharray="18"
+              stroke-dashoffset="0" />
+            <path d="M12 7v5l3.2 2" stroke="#00cc95" stroke-width="1.5" stroke-linecap="round" />
           </svg>
         </div>
         <h1>À Espera de Confirmação</h1>
-        <p class="sub">O organizador ainda está a processar o teu pedido. Assim que aprovado, o teu bilhete com QR Code aparece aqui automaticamente.</p>
+        <p class="sub">O organizador ainda está a processar o teu pedido. Assim que aprovado, o teu bilhete com QR Code
+          aparece aqui automaticamente.</p>
 
         <div class="whatsapp-lembrete">
           <span>💬</span>

@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>SWAT NA CIDADE — Ingressos</title>
+  <meta name="description" content="Compre seu ingresso para SWAT NA CIDADE." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="#" class="logo">Ingressos</a>
+      <button class="link-btn">Minha conta ▾</button>
+    </div>
+  </header>
+
+  <div class="container">
+    <nav class="tabs">
+      <button class="tab active">Sobre</button>
+      <button class="tab">Instruções</button>
+    </nav>
+  </div>
+
+  <main class="container layout">
+    <section>
+      <div class="hero">
+        <img id="event-image"
+          src=""
+          alt="Carregando imagem do evento..."
+        />
+      </div>
+
+      <div class="title-row">
+        <div>
+          <h1 id="event-title">Carregando evento...</h1>
+          <p class="muted">Criado por <a href="#" class="link">Limitless Events</a> · Festa para todos</p>
+          <a href="#" class="btn-outline">Patrocinar</a>
+        </div>
+      </div>
+
+      <hr />
+
+      <h2 class="section-title">Sobre</h2>
+      <div class="about" id="event-description">
+        <p>Carregando descrição...</p>
+      </div>
+    </section>
+
+    <aside class="sidebar">
+      <p class="price"><span class="muted">A partir de </span><strong id="event-price">...</strong></p>
+      <hr />
+      <div class="row">
+        <span class="badge">PROIBIDA A ENTRADA DE MENORES DE 18 ANOS.</span>
+      </div>
+      <div class="row">
+        <div>
+          <p id="event-date">Carregando data...</p>
+          <a href="#" class="link small">Adicionar ao calendário</a>
+        </div>
+      </div>
+      <div class="row">
+        <div>
+          <p id="event-location">Carregando local...</p>
+          <a href="#" class="link small">Ver mapa</a>
+        </div>
+      </div>
+      <button id="open-btn" class="btn-primary">Ingressos</button>
+      <p class="lock">🔒 Os pagamentos são seguros e criptografados.</p>
+    </aside>
+  </main>
+
+  <!-- Modal -->
+  <div id="modal" class="modal hidden" role="dialog" aria-modal="true">
+    <div class="modal-card">
+      <div class="modal-head">
+        <h3 id="modal-title">Comprar ingresso</h3>
+        <button id="close-btn" aria-label="Fechar">✕</button>
+      </div>
+
+      <form id="buy-form" class="modal-body">
+        <div>
+          <p class="event-name">SWAT NA CIDADE</p>
+          <p class="muted small">Sábado, 8 de agosto, 16h</p>
+        </div>
+
+        <div>
+          <label class="label">Quantidade</label>
+          <div class="qty">
+            <button type="button" id="minus" aria-label="Diminuir">−</button>
+            <span id="qty">1</span>
+            <button type="button" id="plus" aria-label="Aumentar">+</button>
+          </div>
+        </div>
+
+        <input required name="name" placeholder="Nome completo" />
+        <input required type="email" name="email" placeholder="E-mail" />
+        <input required name="phone" placeholder="Telefone" />
+
+        <p class="label">Pagamento</p>
+        <input required name="card" inputmode="numeric" placeholder="Número do cartão" />
+        <div class="grid-2">
+          <input required name="exp" placeholder="MM/AA" />
+          <input required name="cvv" inputmode="numeric" placeholder="CVV" />
+        </div>
+
+        <div class="total">
+          <span class="muted">Total</span>
+          <strong id="total">R$ 200,00</strong>
+        </div>
+
+        <button type="submit" class="btn-primary">Finalizar compra</button>
+        <p class="lock">🔒 Os pagamentos são seguros e criptografados.</p>
+      </form>
+
+      <div id="success" class="modal-body hidden center">
+        <div class="check">✓</div>
+        <p>Obrigado, <strong id="s-name">cliente</strong>!</p>
+        <p class="muted small"><span id="s-qty">1</span> ingresso(s) para <strong>SWAT NA CIDADE</strong>.</p>
+        <p class="muted small">Enviamos a confirmação para <strong id="s-email"></strong>.</p>
+        <button id="close-btn-2" class="btn-primary">Fechar</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="event.js"></script>
+</body>
+</html>

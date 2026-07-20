@@ -1,4 +1,4 @@
-﻿// ---- DADOS ----
+﻿﻿// ---- DADOS ----
 const heroSlides = [
   { img: "assets/hero-1.jpg", title: "Together Tour 2026", city: "São Paulo — 17 & 18 de Julho" },
   { img: "assets/hero-2.jpg", title: "Rock Festival", city: "Rio de Janeiro — 22 de Agosto" },
@@ -46,10 +46,28 @@ if (searchInput) {
     searchInput.parentElement.style.background = "#fafbfc";
     searchInput.parentElement.style.boxShadow = "none";
   });
-  
-  // Atalho "Faça sua busca"
+
+  // ---- ATALHOS ----
   const shortcuts = document.querySelectorAll(".shortcut");
-  if (shortcuts[2]) {
+  const featuredSection = document.getElementById("featuredSection");
+  const weekendSection = document.getElementById("weekendSection");
+
+  // Atalho "Eventos à horas" -> Rola para a seção de destaques
+  if (shortcuts[0] && featuredSection) {
+    shortcuts[0].addEventListener("click", () => {
+      featuredSection.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+  }
+
+  // Atalho "Neste fim de semana" -> Rola para a seção do fim de semana
+  if (shortcuts[1] && weekendSection) {
+    shortcuts[1].addEventListener("click", () => {
+      weekendSection.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+  }
+
+  // Atalho "Faça sua busca" -> Foca na barra de pesquisa
+  if (shortcuts[2] && searchInput) {
     shortcuts[2].addEventListener("click", (e) => {
       e.preventDefault();
       searchInput.scrollIntoView({ behavior: "smooth", block: "center" });
@@ -59,15 +77,46 @@ if (searchInput) {
 }
 
 
+// ---- DADOS DOS EVENTOS ----
+const eventosMap = {
+  "O SANCLÉ": "osancle",
+  "Registro Acústico — Vitor Melo": "registro-acustico",
+  "La casa de papel": "la-casa-de-papel",
+  "Baile dos finalistas": "baile-finalistas",
+  "FORÚM-JUVENIL": "forum-juvenil"
+};
+
 // ---- EVENT DELEGATION: Cards ----
 document.addEventListener("click", (e) => {
-  const buyBtn = e.target.closest(".buy");
-  if (buyBtn) {
+  const card = e.target.closest(".card-featured, .card-weekend");
+  if (card) {
     e.preventDefault();
-    const card = buyBtn.closest(".card-weekend");
-    if (card) {
-      const title = card.querySelector("h3")?.textContent || "Evento";
-      console.log(`Comprar: ${title}`);
+    const title = card.querySelector("h3")?.textContent || "";
+    const eventoId = eventosMap[title];
+    if (eventoId) {
+      window.location.href = `Event/index.html?id=${eventoId}`;
     }
   }
 });
+
+// ---- SIDENAV ----
+const hamburgerButton = document.getElementById("hamburger-button");
+const closeButton = document.getElementById("close-button");
+const sidenav = document.getElementById("sidenav");
+const overlay = document.getElementById("overlay");
+
+function openSidenav() {
+  sidenav.classList.add("open");
+  overlay.classList.add("open");
+  document.body.classList.add("sidenav-open");
+}
+
+function closeSidenav() {
+  sidenav.classList.remove("open");
+  overlay.classList.remove("open");
+  document.body.classList.remove("sidenav-open");
+}
+
+hamburgerButton.addEventListener("click", openSidenav);
+closeButton.addEventListener("click", closeSidenav);
+overlay.addEventListener("click", closeSidenav);

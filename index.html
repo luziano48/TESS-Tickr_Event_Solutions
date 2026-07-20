@@ -8,7 +8,7 @@
   <meta name="description" content="Compre ingressos para os melhores shows, festivais, teatros e eventos ao vivo." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 
@@ -44,8 +44,30 @@
         <button class="btn-ghost hide-xs">Entrar</button>
         <button class="btn-primary">Sou organizador</button>
       </nav>
+
+      <button class="hamburger" id="hamburger-button" aria-label="Abrir menu">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
     </div>
   </header>
+
+  <div id="sidenav" class="sidenav">
+    <div class="sidenav-header">
+      <a href="/" class="logo">
+        <span class="logo-mark">✦</span>
+        <span>Tess</span>
+      </a>
+      <button id="close-button" class="close-button" aria-label="Fechar menu">&times;</button>
+    </div>
+    <nav class="sidenav-nav">
+      <a href="#">Produza um evento</a>
+      <a href="#">Entrar</a>
+      <a href="#" class="btn-primary">Sou organizador</a>
+    </nav>
+  </div>
+  <div id="overlay" class="overlay"></div>
 
   <main>
     <!-- HERO -->
@@ -97,7 +119,7 @@
     <!-- EM DESTAQUE -->
 
     
-    <section class="container section">
+    <section class="container section" id="featuredSection">
       <div class="section-head">
         <h2><span class="chip sm brand-bg">★</span> Eventos em destaque</h2>
         <div class="arrows">
@@ -106,7 +128,7 @@
         </div>
       </div>
       <div class="grid grid-5" id="featuredGrid">
-        <a class="card-featured" href="#">
+        <a class="card-featured" href="Event/index.html">
           <div class="thumb">
             <img src="assets/O SANCLÉ OFF.png" alt="O SANCLÉ" loading="lazy" />
             <span class="badge">🎟 115</span>
@@ -122,7 +144,7 @@
           <h3>Registro Acústico — Vitor Melo</h3>
           <p>Teatro Bravo • RJ</p>
         </a>
-        <a class="card-featured" href="#">
+        <a class="card-featured" href="Event/index.html">
           <div class="thumb">
             <img src="assets/la_casa_de_papel (1).png" alt="La casa de papel" loading="lazy" />
             <span class="badge">🎟 58</span>
@@ -138,7 +160,7 @@
           <h3>Baile dos finalistas</h3>
           <p>Ndalatando • ITS</p>
         </a>
-        <a class="card-featured" href="#">
+        <a class="card-featured" href="Event/index.html">
           <div class="thumb">
             <img src="assets/HUSTLER 3.2.jpg" alt="FORÚM-JUVENIL" loading="lazy" />
             <span class="badge">🎟 598</span>
