@@ -8,6 +8,7 @@
   <meta name="description" content="Compre ingressos para os melhores shows, festivais, teatros e eventos ao vivo." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preload" href="assets/hero-1.jpg" as="image" fetchpriority="high" />
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
 </head>
@@ -30,9 +31,10 @@
           <input id="searchInput" placeholder="O que você quer curtir?" aria-label="Buscar eventos" />
         </div>
         <select class="city-btn" id="citySelect" aria-label="Selecionar cidade">
-          <option value="ND">Ndalatando</option>
-          <option value="LD">Luanda</option>
-          <option value="BG">Benguela</option>
+          <option value="all">Todas</option>
+          <option value="Ndalatando">Ndalatando</option>
+          <option value="Luanda">Luanda</option>
+          <option value="Benguela">Benguela</option>
           <svg viewBox="0 0 24 24" class="ic muted">
             <path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" />
           </svg>
@@ -41,7 +43,10 @@
 
       <nav class="nav">
         <button class="btn-ghost hide-sm">Produza um evento</button>
-        <button class="btn-ghost hide-xs">Entrar</button>
+        <div class="auth-menu">
+          <button class="btn-ghost hide-xs" data-auth-button>Entrar</button>
+          <button class="btn-logout hidden" id="logoutButton" type="button">Sair</button>
+        </div>
         <button class="btn-primary">Sou organizador</button>
       </nav>
 
@@ -128,54 +133,61 @@
         </div>
       </div>
       <div class="grid grid-5" id="featuredGrid">
-        <a class="card-featured" href="Event/index.html">
+        <a class="card-featured" href="Event/index.html?id=osancle" data-search="o sancle ndalatando rua do mazambique" data-city="Ndalatando" data-category="shows">
           <div class="thumb">
-            <img src="assets/O SANCLÉ OFF.png" alt="O SANCLÉ" loading="lazy" />
+            <img src="assets/O SANCLÉ OFF.png" alt="O SANCLÉ" loading="lazy" decoding="async" width="600" height="750" />
             <span class="badge">🎟 115</span>
           </div>
           <h3>O SANCLÉ</h3>
           <p>Ndalatando • Rua do mazambique</p>
         </a>
-        <a class="card-featured" href="#">
+        <a class="card-featured" href="Event/index.html?id=registro-acustico" data-search="registro acustico vitor melo teatro bravo dondo" data-city="Dondo" data-category="teatro">
           <div class="thumb">
-            <img src="assets/I LOVE DONDO II.jpg" alt="Registro Acústico — Vitor Melo" loading="lazy" />
+            <img src="assets/I LOVE DONDO II.jpg" alt="Registro Acústico — Vitor Melo" loading="lazy" decoding="async" width="600" height="750" />
             <span class="badge">🎟 330</span>
           </div>
           <h3>Registro Acústico — Vitor Melo</h3>
           <p>Teatro Bravo • RJ</p>
         </a>
-        <a class="card-featured" href="Event/index.html">
+        <a class="card-featured" href="Event/index.html?id=la-casa-de-papel" data-search="la casa de papel ndalatando hotel camuaxi" data-city="Ndalatando" data-category="cinema">
           <div class="thumb">
-            <img src="assets/la_casa_de_papel (1).png" alt="La casa de papel" loading="lazy" />
+            <img src="assets/la_casa_de_papel (1).png" alt="La casa de papel" loading="lazy" decoding="async" width="600" height="750" />
             <span class="badge">🎟 58</span>
           </div>
           <h3>La casa de papel</h3>
           <p>Ndalatando • hotel camuaxi</p>
         </a>
-        <a class="card-featured" href="#">
+        <a class="card-featured" href="Event/index.html?id=baile-finalistas" data-search="baile dos finalistas ndalatando its" data-city="Ndalatando" data-category="shows">
           <div class="thumb">
-            <img src="assets/BAILE-DOS-FINALISTA.jpg" alt="Baile dos finalistas" loading="lazy" />
+            <img src="assets/BAILE-DOS-FINALISTA.jpg" alt="Baile dos finalistas" loading="lazy" decoding="async" width="600" height="750" />
             <span class="badge">🎟 359</span>
           </div>
           <h3>Baile dos finalistas</h3>
           <p>Ndalatando • ITS</p>
         </a>
-        <a class="card-featured" href="Event/index.html">
+        <a class="card-featured" href="Event/index.html?id=forum-juvenil" data-search="forum juvenil ndalatando sp" data-city="Ndalatando" data-category="esportes">
           <div class="thumb">
-            <img src="assets/HUSTLER 3.2.jpg" alt="FORÚM-JUVENIL" loading="lazy" />
+            <img src="assets/HUSTLER 3.2.jpg" alt="FORÚM-JUVENIL" loading="lazy" decoding="async" width="600" height="750" />
             <span class="badge">🎟 59</span>
           </div>
           <h3>FORÚM-JUVENIL</h3>
           <p>Ndalatando • SP</p>
         </a>
       </div>
+      <div id="searchEmptyState" class="search-empty hidden">Nenhum evento encontrado para sua busca.</div>
     </section>
 
     <!-- CATEGORIAS -->
     <section class="container section">
       <h2>Explore por categoria</h2>
       <div class="grid grid-8">
-        <a class="cat" href="#">
+        <a class="cat active" href="#" data-category="all">
+          <span class="chip"><svg viewBox="0 0 24 24" aria-hidden="true" class="ic">
+              <path d="M12 2l2.7 6.3L21 11l-6.3 2.7L12 20l-2.7-6.3L3 11l6.3-2.7L12 2z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" />
+            </svg></span>
+          <span>Todos</span>
+        </a>
+        <a class="cat" href="#" data-category="shows">
           <span class="chip"><svg viewBox="0 0 24 24" aria-hidden="true" class="ic">
               <path d="M9 18V5l12-2v13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                 stroke-linejoin="round" />
@@ -184,14 +196,14 @@
             </svg></span>
           <span>Shows</span>
         </a>
-        <a class="cat" href="#">
+        <a class="cat" href="#" data-category="teatro">
           <span class="chip"><svg viewBox="0 0 24 24" aria-hidden="true" class="ic">
               <path d="M18 3v18H6V3z" fill="none" stroke="currentColor" stroke-width="2" />
               <path d="M14 9H10M16 5H8v14h8z" fill="none" stroke="currentColor" stroke-width="2" />
             </svg></span>
           <span>Teatro</span>
         </a>
-        <a class="cat" href="#">
+        <a class="cat" href="#" data-category="esportes">
           <span class="chip"><svg viewBox="0 0 24 24" aria-hidden="true" class="ic">
               <path d="M8 21h8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
               <path d="M10 21v-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
@@ -203,7 +215,7 @@
             </svg></span>
           <span>Esportes</span>
         </a>
-        <a class="cat" href="#">
+        <a class="cat" href="#" data-category="cinema">
           <span class="chip"><svg viewBox="0 0 24 24" aria-hidden="true" class="ic">
               <rect x="2" y="3" width="20" height="18" rx="2.18" ry="2.18" fill="none" stroke="currentColor"
                 stroke-width="2" />
@@ -215,7 +227,7 @@
           <span>Cinema</span>
         </a>
 
-        <a class="cat" href="#">
+        <a class="cat" href="#" data-category="gastronomia">
           <span class="chip"><svg viewBox="0 0 24 24" aria-hidden="true" class="ic">
               <path d="M4 19h16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
               <path d="M6 19V9" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
@@ -225,7 +237,7 @@
             </svg></span>
           <span>Gastronomia</span>
         </a>
-        <a class="cat" href="#">
+        <a class="cat" href="#" data-category="cursos">
           <span class="chip"><svg viewBox="0 0 24 24" aria-hidden="true" class="ic">
               <path d="M19 3H5a2 2 0 0 0-2 2v14h18V5a2 2 0 0 0-2-2z" fill="none" stroke="currentColor"
                 stroke-width="2" />
@@ -235,7 +247,7 @@
             </svg></span>
           <span>Cursos</span>
         </a>
-        <a class="cat" href="#">
+        <a class="cat" href="#" data-category="agenda">
           <span class="chip"><svg viewBox="0 0 24 24" aria-hidden="true" class="ic">
               <rect x="3" y="5" width="18" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="2" />
               <path d="M16 3v4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
@@ -244,7 +256,7 @@
             </svg></span>
           <span>Agenda</span>
         </a>
-        <a class="cat" href="#">
+        <a class="cat" href="#" data-category="top">
           <span class="chip"><svg viewBox="0 0 24 24" aria-hidden="true" class="ic">
               <path d="M12 2l1.8 5.2L19 9l-5.2 1.8L12 16l-1.8-5.2L5 9l5.2-1.8L12 2z" fill="none" stroke="currentColor"
                 stroke-width="2" stroke-linejoin="round" />
@@ -261,9 +273,9 @@
         <a href="#" class="link-brand">Ver todos</a>
       </div>
       <div class="grid grid-4" id="weekendGrid">
-        <article class="card-weekend">
+        <article class="card-weekend" data-search="musical luzes da cidade teatro real sp" data-city="SP" data-category="teatro">
           <div class="thumb">
-            <img src="assets/event-theatre.jpg" alt="Musical: Luzes da Cidade" loading="lazy" />
+            <img src="assets/event-theatre.jpg" alt="Musical: Luzes da Cidade" loading="lazy" decoding="async" width="600" height="450" />
             <span class="date-tag">SÁB 18 JUL</span>
           </div>
           <div class="body">
@@ -275,9 +287,9 @@
             </div>
           </div>
         </article>
-        <article class="card-weekend">
+        <article class="card-weekend" data-search="noite do riso comedy club sp" data-city="SP" data-category="shows">
           <div class="thumb">
-            <img src="assets/event-comedy.jpg" alt="Noite do Riso" loading="lazy" />
+            <img src="assets/event-comedy.jpg" alt="Noite do Riso" loading="lazy" decoding="async" width="600" height="450" />
             <span class="date-tag">SEX 17 JUL</span>
           </div>
           <div class="body">
@@ -289,9 +301,9 @@
             </div>
           </div>
         </article>
-        <article class="card-weekend">
+        <article class="card-weekend" data-search="feira gastronomica parque das nacoes sp" data-city="SP" data-category="gastronomia">
           <div class="thumb">
-            <img src="assets/event-park.jpg" alt="Feira Gastronômica" loading="lazy" />
+            <img src="assets/event-park.jpg" alt="Feira Gastronômica" loading="lazy" decoding="async" width="600" height="450" />
             <span class="date-tag">DOM 19 JUL</span>
           </div>
           <div class="body">
@@ -303,9 +315,9 @@
             </div>
           </div>
         </article>
-        <article class="card-weekend">
+        <article class="card-weekend" data-search="festival do doce expo center bh" data-city="BH" data-category="gastronomia">
           <div class="thumb">
-            <img src="assets/event-cake.jpg" alt="Festival do Doce" loading="lazy" />
+            <img src="assets/event-cake.jpg" alt="Festival do Doce" loading="lazy" decoding="async" width="600" height="450" />
             <span class="date-tag">SÁB 18 JUL</span>
           </div>
           <div class="body">
@@ -373,7 +385,26 @@
     </div>
   </footer>
 
-  <script src="script.js"></script>
+  <div id="authModal" class="auth-modal hidden" role="dialog" aria-modal="true" aria-labelledby="authTitle">
+    <div class="auth-card">
+      <button id="authClose" class="auth-close" aria-label="Fechar login">&times;</button>
+      <h3 id="authTitle">Entrar</h3>
+      <form id="authForm" novalidate>
+        <label>
+          E-mail
+          <input type="email" name="email" placeholder="seu@email.com" required />
+        </label>
+        <label>
+          Senha
+          <input type="password" name="password" placeholder="Sua senha" required />
+        </label>
+        <p id="authError" class="form-error hidden" role="alert"></p>
+        <button type="submit" class="btn-primary">Acessar</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="script.js" defer></script>
 </body>
 
 </html>

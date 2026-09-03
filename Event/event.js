@@ -1,7 +1,33 @@
 document.addEventListener('DOMContentLoaded', async () => {
-  let eventoAtual = null; // Armazenar os dados do evento carregado
+  let eventoAtual = null;
 
-  // 1. Obter o ID do evento a partir da URL
+  const api = {
+    async getEvents() {
+      try {
+        const response = await fetch('../eventos.json', { cache: 'no-store' });
+        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+        return await response.json();
+      } catch (error) {
+        console.warn('Usando fallback do evento:', error);
+        return [{
+          id: 'osancle',
+          title: 'O SANCLÉ',
+          image: 'assets/O SANCLÉ OFF.png',
+          city: 'Ndalatando',
+          location: 'Rua do mazambique',
+          date: 'A definir',
+          description: 'Descrição detalhada sobre o evento O SANCLÉ.',
+          price: '3.500,00'
+        }];
+      }
+    },
+
+    async getEventById(id) {
+      const eventos = await this.getEvents();
+      return eventos.find((event) => event.id === id) || null;
+    }
+  };
+
   const params = new URLSearchParams(window.location.search);
   const eventId = params.get('id');
 
@@ -10,34 +36,23 @@ document.addEventListener('DOMContentLoaded', async () => {
     return;
   }
 
-  // 2. Buscar os dados de todos os eventos
   try {
-    // O caminho '../eventos.json' assume que este script está na pasta 'Event'
-    const response = await fetch('../eventos.json');
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
-    const eventos = await response.json();
-
-    // 3. Encontrar o evento específico pelo ID
-    const evento = eventos.find(e => e.id === eventId);
-    eventoAtual = evento; // Salva o evento para uso posterior (no modal)
+    const evento = await api.getEventById(eventId);
+    eventoAtual = evento;
 
     if (!evento) {
       document.body.innerHTML = `<h1>Evento "${eventId}" não encontrado.</h1>`;
       return;
     }
 
-    // 4. Preencher a página com os dados do evento
-    // Certifique-se de que seu Event/index.html tem elementos com estes IDs
-    document.title = `${evento.title} — Tess`; // Atualiza o título da aba do navegador
+    document.title = `${evento.title} — Tess`;
     document.getElementById('event-title').textContent = evento.title;
-    document.getElementById('event-image').src = `../${evento.image}`; // Adiciona ../ para corrigir o caminho da imagem
+    document.getElementById('event-image').src = `../${evento.image}`;
     document.getElementById('event-image').alt = evento.title;
     document.getElementById('event-date').textContent = evento.date;
     document.getElementById('event-location').textContent = `${evento.location}, ${evento.city}`;
     document.getElementById('event-description').textContent = evento.description;
-    
+
     const priceElement = document.getElementById('event-price');
     if (priceElement) {
       priceElement.textContent = evento.price.toLowerCase().includes('definir') ? evento.price : `KZ ${evento.price}`;
@@ -59,8 +74,15 @@ document.addEventListener('DOMContentLoaded', async () => {
   const totalEl = document.getElementById('total');
   const minusBtn = document.getElementById('minus');
   const plusBtn = document.getElementById('plus');
+  const formError = document.getElementById('form-error');
 
   if (!modal || !openBtn || !closeBtn || !buyForm) return;
+
+  const setFormError = (message) => {
+    if (!formError) return;
+    formError.textContent = message;
+    formError.classList.toggle('hidden', !message);
+  };
 
   const toggleModal = (force) => {
     modal.classList.toggle('hidden', force);
@@ -71,14 +93,13 @@ document.addEventListener('DOMContentLoaded', async () => {
   closeBtn.addEventListener('click', () => toggleModal(true));
   closeBtn2.addEventListener('click', () => {
     toggleModal(true);
-    // Reseta o formulário para a próxima abertura
     buyForm.classList.remove('hidden');
     successScreen.classList.add('hidden');
     buyForm.reset();
+    setFormError('');
     updateTotal();
   });
 
-  // Lógica da quantidade
   let qty = 1;
   const updateQty = () => {
     qtyEl.textContent = qty;
@@ -110,16 +131,76 @@ document.addEventListener('DOMContentLoaded', async () => {
     updateQty();
   });
 
-  // Lógica do formulário
-  buyForm.addEventListener('submit', (e) => {
-    e.preventDefault();
+  buyForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+
     const formData = new FormData(buyForm);
-    document.getElementById('s-name').textContent = formData.get('name');
-    document.getElementById('s-email').textContent = formData.get('email');
+    const name = String(formData.get('name') || '').trim();
+    const email = String(formData.get('email') || '').trim();
+    const phone = String(formData.get('phone') || '').trim();
+    const phoneDigits = phone.replace(/\D/g, '');
+    const card = String(formData.get('card') || '').replace(/\s+/g, '');
+    const exp = String(formData.get('exp') || '').trim();
+    const cvv = String(formData.get('cvv') || '').trim();
+
+    if (name.length < 2) {
+      setFormError('Informe um nome completo válido.');
+      return;
+    }
+
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      setFormError('Informe um e-mail válido.');
+      return;
+    }
+
+    if (phoneDigits.length < 9) {
+      setFormError('Informe um telefone válido.');
+      return;
+    }
+
+    if (card.length < 12) {
+      setFormError('Número do cartão inválido.');
+      return;
+    }
+
+    if (!/^\d{2}\/\d{2}$/.test(exp)) {
+      setFormError('A data de expiração deve seguir o formato MM/AA.');
+      return;
+    }
+
+    if (!/^\d{3,4}$/.test(cvv)) {
+      setFormError('O CVV deve ter 3 ou 4 dígitos.');
+      return;
+    }
+
+    const order = {
+      id: `TCK-${Date.now().toString().slice(-8)}`,
+      eventId: eventoAtual?.id || eventId,
+      eventName: eventoAtual?.title || 'Evento',
+      eventDate: eventoAtual?.date || 'A definir',
+      eventLocation: `${eventoAtual?.location || ''}, ${eventoAtual?.city || ''}`.trim(),
+      titular: name,
+      email,
+      telefone: phoneDigits,
+      quantidade: qty,
+      tipo: 'Pista',
+      total: totalEl.textContent,
+      status: 'aprovado',
+      createdAt: new Date().toISOString()
+    };
+
+    const storageKey = 'ticketa-orders';
+    const orders = JSON.parse(localStorage.getItem(storageKey) || '[]');
+    orders.push(order);
+    localStorage.setItem(storageKey, JSON.stringify(orders));
+
+    setFormError('');
+    document.getElementById('s-name').textContent = name;
+    document.getElementById('s-email').textContent = email;
     document.getElementById('s-qty').textContent = qty;
     buyForm.classList.add('hidden');
     successScreen.classList.remove('hidden');
   });
 
-  updateTotal(); // Define o total inicial ao carregar a página
+  updateTotal();
 });

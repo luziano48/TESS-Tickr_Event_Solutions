@@ -31,6 +31,11 @@
         <img id="event-image"
           src=""
           alt="Carregando imagem do evento..."
+          loading="eager"
+          decoding="async"
+          fetchpriority="high"
+          width="800"
+          height="520"
         />
       </div>
 
@@ -81,7 +86,7 @@
         <button id="close-btn" aria-label="Fechar">✕</button>
       </div>
 
-      <form id="buy-form" class="modal-body">
+      <form id="buy-form" class="modal-body" novalidate>
         <div>
           <p class="event-name">SWAT NA CIDADE</p>
           <p class="muted small">Sábado, 8 de agosto, 16h</p>
@@ -107,6 +112,8 @@
           <input required name="cvv" inputmode="numeric" placeholder="CVV" />
         </div>
 
+        <p id="form-error" class="form-error hidden" role="alert"></p>
+
         <div class="total">
           <span class="muted">Total</span>
           <strong id="total">R$ 200,00</strong>
@@ -126,6 +133,6 @@
     </div>
   </div>
 
-  <script src="event.js"></script>
+  <script src="event.js" defer></script>
 </body>
 </html>

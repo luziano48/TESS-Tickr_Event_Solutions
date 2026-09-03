@@ -1,0 +1,269 @@
+# 🎯 Análise do Frontend Tickr — Checklist de Implementação
+
+## Estado Atual
+O frontend tem uma boa base visual (design, CSS, estrutura HTML). No entanto, há deficiências significativas em funcionalidade, integração de dados e polimento.
+
+---
+
+## 🔴 CRÍTICO (Bloqueadores de Produção)
+
+### 1. **Busca de Eventos Funcional**
+- [ ] A barra de pesquisa não faz nada (sem filtro, sem rota)
+- [ ] Falta lógica para filtrar eventos por:
+  - Texto/nome do evento
+  - Categoria
+  - Localização (select de cidades)
+  - Data/período
+- [ ] Sem integração com API/backend
+
+**Impacto**: Usuários não conseguem encontrar eventos além dos destacados na homepage.
+
+---
+
+### 2. **Dados Dinâmicos (Hard-coded vs Real)**
+- [ ] Eventos estão hard-coded no HTML
+- [ ] Falta arquivo JSON/API com eventos reais
+- [ ] Sem paginação ou carregamento dinâmico
+- [ ] Categorias não funcionam (links vazios)
+- [ ] Cidades (Ndalatando, Luanda, Benguela) não filtram
+
+**Status Atual**: `eventos.json` existe mas não é usado.
+
+**Impacto**: Site não escala, difícil atualizar eventos.
+
+---
+
+### 3. **Sistema de Autenticação**
+- [ ] Botão "Entrar" não faz nada
+- [ ] Sem modal/página de login
+- [ ] Sem registro de utilizadores
+- [ ] Sem "Minha Conta" funcional
+- [ ] Sem sessões/tokens
+
+**Impacto**: Impossível rastrear compras do utilizador.
+
+---
+
+### 4. **Carrinho e Checkout Incompleto**
+- [ ] Modal de compra está parcialmente feito (formulário com cards)
+- [ ] Sem integração com gateway de pagamento (Paypal, Stripe, Multicaixa)
+- [ ] Sem validação de campos de cartão
+- [ ] Sem cálculo dinâmico de total
+- [ ] Sem geração de recibos/confirmação por email
+
+**Impacto**: Não há fluxo de venda real.
+
+---
+
+### 5. **Geração de QR Code — Falta Lógica Backend**
+- [ ] Página `/lev/lev.html` existe e tem UI
+- [ ] QR Code é gerado (biblioteca qrcode.js) mas dados são fake
+- [ ] Sem validação de bilhetes contra banco de dados
+- [ ] Sem integração com sistema de eventos organizer
+
+**Impacto**: Bilhetes não são validados, permitem duplicação.
+
+---
+
+### 6. **Página do Evento (Event/index.html)**
+- [ ] Sem lógica para carregar dados do evento dinamicamente
+- [ ] Query param `?id=osancle` existe no link mas não é processado
+- [ ] Falta arquivo `event.js` com lógica ou está incompleto
+- [ ] Sem informações reais (data, local, descrição são placeholder)
+- [ ] Sem integração com `/lev/lev.html`
+
+---
+
+## 🟠 ALTO (Afeta UX Significativamente)
+
+### 7. **Responsividade Móvel**
+- [ ] Header desaparece em mobile mas menu hamburger pode melhorar
+- [ ] Grid de eventos não se adapta bem em small screens
+- [ ] Modal de compra não é otimizada para mobile
+- [ ] Inputs de cartão sem máscara (difícil preencher em mobile)
+
+**Testar em**: iPhone SE, Galaxy S8, iPad.
+
+---
+
+### 8. **Validação de Formulários**
+- [ ] Formulário de compra não valida:
+  - Email (formato válido)
+  - Telefone (formato angolano 244 9XX XXX XXX)
+  - Cartão (luhn algorithm)
+  - CVV (3 dígitos)
+  - Data expiração (MM/AA válido)
+- [ ] Sem feedback visual de erros em tempo real
+
+---
+
+### 9. **Carrossel de Eventos (Featured & Weekend)**
+- [ ] Botões `< >` não funcionam (sem JavaScript)
+- [ ] Sem swipe/touch suporte (móvel)
+- [ ] Sem autoplay
+- [ ] Sem lazy loading de imagens
+
+**Arquivo**: `script.js` precisa de lógica para navegar grids.
+
+---
+
+### 10. **Links e Navegação**
+- [ ] "Produza um evento" → sem destino
+- [ ] "Categorias" → todos os `<a>` apontam para `#` (vazios)
+- [ ] "Cidades" no footer → sem filtro
+- [ ] "Meus ingressos" → sem página
+- [ ] "Ver todos" (eventos) → sem listagem completa
+
+---
+
+### 11. **Integração de Imagens**
+- [ ] Imagens têm nomes especiais (CAFÉ NETWORKING, etc) → quebram em alguns sistemas
+- [ ] Sem otimização (WebP, srcset responsivo)
+- [ ] Sem placeholder/skeleton loader
+- [ ] Sem fallback se imagem não carregar
+
+---
+
+### 12. **Páginas Faltando**
+- [ ] Sem página de listagem de eventos (`/eventos` ou `/events`)
+- [ ] Sem página "Minhas Compras" / "Meus Ingressos"
+- [ ] Sem página "Termos e Condições"
+- [ ] Sem página "Privacidade"
+- [ ] Sem página "FAQ / Ajuda"
+- [ ] Sem página para "Produtores de Eventos"
+
+---
+
+## 🟡 MÉDIO (Polimento e Funcionalidades Secundárias)
+
+### 13. **Acessibilidade (A11y)**
+- [ ] Faltam `alt` descritivos em muitas imagens
+- [ ] Sem atributos ARIA em modais e componentes dinâmicos
+- [ ] Baixo contraste em alguns textos (cores muted)
+- [ ] Sem suporte a navegação por teclado (Tab, Enter)
+- [ ] Sem testes com screen readers
+
+---
+
+### 14. **Performance**
+- [ ] Imagens não otimizadas (size é alto, ~49MB no diretório assets/)
+- [ ] Sem minificação de CSS/JS
+- [ ] Sem compressão Gzip
+- [ ] Sem caching de assets
+- [ ] Sem preload de fontes críticas (fonts.googleapis)
+
+---
+
+### 15. **SEO**
+- [ ] Meta tags incompletas (missing og:image, og:url, etc.)
+- [ ] Sem sitemap.xml
+- [ ] Sem robots.txt
+- [ ] Estrutura de URLs não otimizada (ex: `/Event/index.html?id=...` → melhor `/eventos/osancle`)
+- [ ] Sem schema.json para eventos
+
+---
+
+### 16. **Estados e Microcópias**
+- [ ] Sem loading spinners durante busca
+- [ ] Sem estado "sem resultados" para filtros vazios
+- [ ] Sem mensagem de confirmação após compra (além do modal)
+- [ ] Botões sem estados de disabled
+- [ ] Sem feedback de erro ao enviar formulário
+
+---
+
+### 17. **Analytics & Rastreamento**
+- [ ] Sem Google Analytics
+- [ ] Sem rastreamento de eventos (cliques, conversões)
+- [ ] Sem heatmap tools (Hotjar, Clarity)
+
+---
+
+## 🟢 BAIXO (Nice-to-Have)
+
+### 18. **Animações e Transições**
+- [ ] Hover effects básicos estão OK
+- [ ] Faltam animações de:
+  - Entrada de modal (fade + scale)
+  - Carregamento de eventos (stagger)
+  - Scroll smooth triggers
+  - Confetti ao completar compra 🎉
+
+---
+
+### 19. **Tema Escuro**
+- [ ] Sem suporte a dark mode
+- [ ] Sem preferência de utilizador
+
+---
+
+### 20. **Filtros Avançados**
+- [ ] Sem filtro por faixa de preço
+- [ ] Sem filtro por rating/avaliação
+- [ ] Sem ordenação (relevância, preço, data)
+
+---
+
+## 📋 Arquivos para Revisar/Completar
+
+| Arquivo | Status | Ação |
+|---------|--------|------|
+| `index.html` | ✅ OK | Adicionar carrossel JS |
+| `script.js` | ⚠️ Parcial | Busca, filtros, navegação grids |
+| `styles.css` | ✅ OK | Adicionar dark mode, melhorar mobile |
+| `Event/index.html` | ⚠️ Parcial | Loaddata dinâmico |
+| `Event/event.js` | ❌ Vazio/Incompleto | Implementar carregamento de evento |
+| `Event/styles.css` | ✅ OK | Ajustes responsivos |
+| `lev/lev.html` | ✅ OK | QR code visual OK |
+| `lev/lev.js` | ⚠️ Parcial | Validação backend + API |
+| `eventos.json` | ❌ Não utilizado | Integrar ou usar API |
+
+---
+
+## 🚀 Roadmap Recomendado (Por Prioridade)
+
+### Fase 1 — Funcional (2-3 semanas)
+1. Integração com API backend (eventos)
+2. Sistema de autenticação básico
+3. Carrinho e checkout com real gateway
+4. Page Event com dados dinâmicos
+5. Validação de formulários
+
+### Fase 2 — Polish (1-2 semanas)
+6. Responsividade mobile completa
+7. Carrosseis funcionais (JS)
+8. Loading states e error handling
+9. Imagens otimizadas
+10. Links e navegação 100% funcional
+
+### Fase 3 — Produção (1 semana)
+11. SEO basics (meta tags, schema)
+12. Analytics
+13. A11y audit
+14. Performance optimization
+15. Testes (E2E, unit)
+
+---
+
+## 📝 Notas Adicionais
+
+- **Design**: Está muito bom! Paleta de cores, tipografia e spacing são coesos.
+- **Código CSS**: Bem organizado com variáveis CSS, sem muita redundância.
+- **Código JS**: Simples, sem frameworks — considerar React/Vue se crescer muito.
+- **Backend**: Assume que existe, mas frontend não faz requests reais (sem fetch/axios).
+
+---
+
+## ✅ Próximos Passos Imediatos
+
+1. **Criar `/api/events.json`** ou endpoint com dados reais
+2. **Implementar `fetchEvents()`** em `script.js` para popular grids
+3. **Criar modal de login** (`/login.html` ou modal overlay)
+4. **Integrar Stripe/PayPal** no checkout
+5. **Completar `Event/event.js`** com route de ID
+
+---
+
+**Gerado em**: Setembro 2026  
+**Versão Frontend**: v0.1 (MVP)  
+**Próxima Revisão**: Após integração backend
