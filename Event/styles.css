@@ -25,12 +25,6 @@ body {
   width: 100%;
 }
 
-body.modal-open {
-  overflow: hidden;
-  position: fixed;
-  width: 100%;
-}
-
 body {
   font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
   color: var(--text-dark);
@@ -298,219 +292,10 @@ h1 {
   transform: translateY(-2px);
 }
 
-.link-btn:hover,
-.modal-head button:hover { transform: rotate(8deg) scale(1.1); }
 
-.badge,
-.lock { transition: transform .25s ease; }
+.badge { transition: transform .25s ease; }
 
 .badge:hover { transform: translateY(-2px); }
-
-.check { animation: check-in .55s cubic-bezier(.22, 1.3, .36, 1) both; }
-
-@keyframes check-in {
-  from { transform: scale(.6) rotate(-12deg); opacity: 0; }
-  to { transform: scale(1) rotate(0); opacity: 1; }
-}
-
-.lock {
-  text-align: center;
-  color: var(--text-muted);
-  font-size: 11px;
-  margin-top: 16px;
-  letter-spacing: 0.3px;
-}
-
-/* Modal */
-.modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, .6);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-end;
-  z-index: 50;
-  padding: 0;
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
-}
-
-.hidden {
-  display: none !important;
-}
-
-.modal-card {
-  background: #fff;
-  border-radius: 16px 16px 0 0;
-  width: 100%;
-  max-width: 480px;
-  max-height: 80vh;
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, .15);
-  display: flex;
-  flex-direction: column;
-  padding-bottom: env(safe-area-inset-bottom);
-}
-
-.modal-head {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px 24px;
-  border-bottom: 1px solid var(--border-light);
-  background: linear-gradient(135deg, rgba(0, 51, 45, 0.02), rgba(0, 204, 149, 0.02));
-  flex-shrink: 0;
-}
-
-.modal-head h3 {
-  margin: 0;
-  font-size: 18px;
-  font-weight: 800;
-  color: var(--text-dark);
-  letter-spacing: -0.3px;
-}
-
-.modal-head button {
-  background: none;
-  border: 0;
-  font-size: 20px;
-  color: var(--text-muted);
-  cursor: pointer;
-  transition: color 0.2s;
-}
-
-.modal-head button:hover {
-  color: var(--primary-meadow);
-}
-
-.modal-body {
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-  flex-grow: 1;
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
-}
-
-.modal-body.center {
-  text-align: center;
-  align-items: center;
-}
-
-.event-name {
-  font-weight: 700;
-  margin: 0;
-  color: var(--text-dark);
-  font-size: 16px;
-}
-
-.label {
-  font-size: 11px;
-  font-weight: 800;
-  text-transform: uppercase;
-  color: var(--text-muted);
-  margin: 4px 0 6px;
-  letter-spacing: 0.5px;
-}
-
-.qty {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  background: var(--bg-light);
-  padding: 8px;
-  border-radius: 8px;
-  width: fit-content;
-}
-
-.qty button {
-  width: 36px;
-  height: 36px;
-  border: 1px solid var(--border-light);
-  background: #fff;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 16px;
-  font-weight: 700;
-  color: var(--primary-meadow);
-  transition: all 0.2s;
-  -webkit-user-select: none;
-  user-select: none;
-}
-
-.qty button:active {
-  background: var(--primary-meadow);
-  color: #fff;
-  border-color: var(--primary-meadow);
-}
-
-.qty span {
-  min-width: 32px;
-  text-align: center;
-  font-weight: 700;
-  color: var(--text-dark);
-}
-
-.modal-body input {
-  width: 100%;
-  padding: 12px 14px;
-  border: 1px solid var(--border-light);
-  border-radius: 8px;
-  font-size: 16px;
-  font-family: inherit;
-  background: var(--bg-light);
-  color: var(--text-dark);
-  transition: all 0.2s;
-  -webkit-appearance: none;
-  appearance: none;
-}
-
-.modal-body input:focus {
-  outline: none;
-  border-color: var(--primary-meadow);
-  box-shadow: 0 0 0 3px rgba(0, 204, 149, 0.1);
-}
-
-.grid-2 {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
-}
-
-.total {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-top: 1px solid var(--border-light);
-  padding-top: 16px;
-  margin-top: 8px;
-}
-
-.total strong {
-  color: var(--primary-meadow);
-  font-size: 20px;
-  font-weight: 800;
-}
-
-.check {
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #e8f5d8, #e0f3d0);
-  color: var(--success-dark);
-  font-size: 32px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 16px;
-  box-shadow: 0 4px 12px rgba(90, 138, 42, 0.15);
-}
 
 /* Mobile optimizations */
 @media (max-width: 600px) {
@@ -520,17 +305,7 @@ h1 {
   .title-row { flex-direction: column; gap: 12px; }
   .icon-row { order: -1; align-self: flex-end; }
   .sidebar { position: static; top: auto; }
-  .modal { align-items: flex-end; padding: 0; }
-  .modal-card { border-radius: 16px 16px 0 0; max-height: 90vh; }
-  .modal-body { padding: 16px; gap: 12px; }
-  .grid-2 { grid-template-columns: 1fr; }
-  .modal-body input { font-size: 16px; }
-  .qty { width: 100%; justify-content: center; }
-  .total { padding-top: 12px; margin-top: 6px; }
-  .total strong { font-size: 18px; }
   .btn-primary { padding: 12px; font-size: 13px; margin-top: 16px; }
-  .event-name { font-size: 15px; }
-  .lock { font-size: 10px; margin-top: 12px; }
   hr { margin: 16px 0; }
   .layout { padding: 24px 16px; gap: 24px; }
 }
@@ -540,18 +315,7 @@ h1 {
   .header-inner { padding: 10px 12px; }
   h1 { font-size: 24px; }
   .logo { font-size: 18px; }
-  .modal-card { max-height: 95vh; }
-  .modal-body { padding: 14px; gap: 10px; }
-  .modal-head { padding: 16px 20px; }
-  .modal-head h3 { font-size: 16px; }
-  .event-name { font-size: 14px; }
-  .qty button { width: 32px; height: 32px; font-size: 14px; }
-  .qty span { min-width: 28px; font-size: 14px; }
-  .label { font-size: 10px; }
-  .total strong { font-size: 16px; }
   .btn-primary { padding: 10px; font-size: 12px; margin-top: 12px; }
-  .grid-2 { gap: 8px; }
-  .modal-body input { padding: 10px 12px; font-size: 16px; }
   .section-title { font-size: 12px; }
   .about p { font-size: 14px; }
   .layout { padding: 16px 12px; gap: 16px; }

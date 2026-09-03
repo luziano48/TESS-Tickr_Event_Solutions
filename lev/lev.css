@@ -502,3 +502,19 @@ input:focus {
     padding: 0.9rem;
   }
 }
+.contacto-icon svg {
+  width: 20px;
+  height: 20px;
+  display: block;
+}
+.status-icon svg,
+.approval-icon {
+  width: 18px;
+  height: 18px;
+  display: inline-block;
+  vertical-align: -4px;
+}
+
+.approval-icon {
+  margin-right: 5px;
+}

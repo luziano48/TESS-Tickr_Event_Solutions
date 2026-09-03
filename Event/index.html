@@ -73,65 +73,9 @@
           <a href="#" class="link small">Ver mapa</a>
         </div>
       </div>
-      <button id="open-btn" class="btn-primary">Ingressos</button>
-      <p class="lock">🔒 Os pagamentos são seguros e criptografados.</p>
+      <a id="open-btn" class="btn-primary" href="compra.html">Ingressos</a>
     </aside>
   </main>
-
-  <!-- Modal -->
-  <div id="modal" class="modal hidden" role="dialog" aria-modal="true">
-    <div class="modal-card">
-      <div class="modal-head">
-        <h3 id="modal-title">Comprar ingresso</h3>
-        <button id="close-btn" aria-label="Fechar">✕</button>
-      </div>
-
-      <form id="buy-form" class="modal-body" novalidate>
-        <div>
-          <p class="event-name">SWAT NA CIDADE</p>
-          <p class="muted small">Sábado, 8 de agosto, 16h</p>
-        </div>
-
-        <div>
-          <label class="label">Quantidade</label>
-          <div class="qty">
-            <button type="button" id="minus" aria-label="Diminuir">−</button>
-            <span id="qty">1</span>
-            <button type="button" id="plus" aria-label="Aumentar">+</button>
-          </div>
-        </div>
-
-        <input required name="name" placeholder="Nome completo" />
-        <input required type="email" name="email" placeholder="E-mail" />
-        <input required name="phone" placeholder="Telefone" />
-
-        <p class="label">Pagamento</p>
-        <input required name="card" inputmode="numeric" placeholder="Número do cartão" />
-        <div class="grid-2">
-          <input required name="exp" placeholder="MM/AA" />
-          <input required name="cvv" inputmode="numeric" placeholder="CVV" />
-        </div>
-
-        <p id="form-error" class="form-error hidden" role="alert"></p>
-
-        <div class="total">
-          <span class="muted">Total</span>
-          <strong id="total">R$ 200,00</strong>
-        </div>
-
-        <button type="submit" class="btn-primary">Finalizar compra</button>
-        <p class="lock">🔒 Os pagamentos são seguros e criptografados.</p>
-      </form>
-
-      <div id="success" class="modal-body hidden center">
-        <div class="check">✓</div>
-        <p>Obrigado, <strong id="s-name">cliente</strong>!</p>
-        <p class="muted small"><span id="s-qty">1</span> ingresso(s) para <strong>SWAT NA CIDADE</strong>.</p>
-        <p class="muted small">Enviamos a confirmação para <strong id="s-email"></strong>.</p>
-        <button id="close-btn-2" class="btn-primary">Fechar</button>
-      </div>
-    </div>
-  </div>
 
   <script src="event.js" defer></script>
 </body>

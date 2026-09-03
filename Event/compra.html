@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Finalizar compra — Ingressos</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="compra.css">
+</head>
+
+<body>
+  <header>
+    <div class="container header"><a class="logo" href="../index.html">Ingressos</a><a id="back" href="index.html"><svg class="back-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>Voltar ao evento</a></div>
+  </header>
+  <main class="container">
+    <section class="card">
+      <p class="eyebrow">Finalizar compra</p>
+      <h1>Seu ingresso</h1>
+      <div class="summary">
+        <h2 id="event-name">Carregando evento...</h2>
+        <p id="event-details">Aguarde um momento.</p>
+      </div>
+      <form id="buy-form" novalidate>
+        <fieldset>
+          <legend>Quantidade</legend>
+          <div class="qty"><button type="button" id="minus" aria-label="Diminuir quantidade"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 12h12"/></svg></button><span id="qty"
+              aria-live="polite">1</span><button type="button" id="plus" aria-label="Aumentar quantidade">+</button>
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend>Dados do comprador</legend>
+          <label>Nome completo<input required name="name" autocomplete="name"></label>
+          <label>E-mail<input required type="email" name="email" autocomplete="email"></label>
+          <label>Telefone<input required name="phone" inputmode="tel" autocomplete="tel"></label>
+          
+        </fieldset>
+        <p class="secure">Esta é uma demonstração: o seu ingresso será guardado após o registo.</p>
+        
+        <p id="form-error" class="error" role="alert" hidden></p>
+        <div class="total"><span>Total</span><strong id="total">—</strong></div>
+        <button class="primary" type="submit">Guardar ingresso</button>
+      </form>
+    </section>
+  </main>
+  <script src="compra.js" defer></script>
+</body>
+
+</html>
